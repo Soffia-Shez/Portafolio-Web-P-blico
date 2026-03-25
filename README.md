@@ -1,4 +1,4 @@
-# Portafolio-Web-P-blico
+# Portafolio-Web-Público
 Sitio Web de dominio público para la publicación de portafolios y sus respectivos proyectos.
 
 **📌 Descripción:**
