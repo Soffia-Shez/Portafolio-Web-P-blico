@@ -25,4 +25,8 @@ Plataforma web de portafolios desarrollada con Flask que permite a los usuarios 
 
 <br>
 
+**📊 Arquitectura del sistema:**
+Frontend, backend y base de datos.
 
+**Explicación del proyecto:**
+https://youtu.be/5cHLQDVXj-0
