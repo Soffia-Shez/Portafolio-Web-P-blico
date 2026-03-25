@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Creación del portafolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <h1 class="form-title">Crea tu propio portafolio</h1>
+
+    <form action="/generate" method="POST" enctype="multipart/form-data">
+    <!-- necesario para que funcione la carga de avatares -->
+        <div class="formulario">
+
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="bio">Descripción:</label>
+                <input type="text" id="bio" name="bio" required>
+
+                <label for="github">Github:</label>
+                <input type="text" id="github" name="github" required>
+
+                <label for="telegram">Telegram:</label>
+                <input type="text" id="telegram" name="telegram" required>
+
+                <label for="avatar">Avatar:</label>
+                <input type="file" id="avatar" name="avatar">
+
+                <label for="skills">Skills:</label>
+                <textarea id="skills" name="skills"></textarea>
+
+                <button type="submit">Registrar</button>
+        </div>
+
+    </form>
+
+<div>
+    <a href="{{url_for ('index')}}" class = "btn">Volver</a>
+</div>
+
+</body>
+</html>

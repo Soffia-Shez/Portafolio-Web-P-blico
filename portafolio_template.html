@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfiles</title>
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="perfil">
+        <img class="avatar" src="{{ url_for('static', filename=avatar if avatar else 'uploads/placeholder.png') }}">
+      <h1>{{name}}</h1>
+      <p>{{bio}}</p>
+
+        {% if github %}
+        <div style="margin-top: 10px;">
+            <a href="https://github.com/{{ github }}" target="_blank">GitHub</a>
+         </div>
+        {% endif %}
+
+        {%if telegram%}
+        <div style="margin-top: 10px;">
+            <a href="https://t.me/{{telegram}}" target="_blank" title="Ir a Telegram">
+                <span class="badge">⌯⌲ Telegram</span>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+
+    <div style="margin-top: 10px;">
+        <ul>
+      {% for skill in skills %}
+        <li>{{ skill }}</li>
+      {% endfor %}
+    </ul>
+
+    </div>
+
+    <div class="tools">
+        {% for tool, icon in tool_icons.items() %}
+            {% if tool in skills %}
+                <span class="badge">
+                    {{icon}} {{tool}}
+                </span>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+    {% if projects %}
+        <h3>Projects</h3>
+          <ul>
+            {% for project in projects %}
+            <li>
+              <a href="{{ project.link }}" target="_blank">
+                {{ project.title }}
+              </a>
+              <p>{{ project.description }}</p>
+            </li>
+            {% endfor %}
+          </ul>
+
+    {% else %}
+      <p>No se encontraron proyectos.</p>
+    {% endif %}
+
+</div>
+
+<div class="card" style="left-align: center; margin-top: 40px;">
+        <h1>RECOMENDACIONES DE PERFIL</h1>
+
+        {% if recommended_profiles %}
+            <ul style="list-style: none; padding: 0;">
+
+                {% for profile in recommended_profiles %}
+                    <li style="margin: 8px 0;">
+                        <a href="{{ url_for('view_portafolio', uuid=profile['uuid']) }}">{{ profile ['name'] }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay otros perfiles disponibles.</p>
+        {% endif %}
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="{{ url_for('index') }}" class="button-secondary">Volver</a>
+    </div>
+
+</body>
+</html>

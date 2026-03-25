@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Todos los portafolios</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<form method="GET" style="max-width: 80%; margin-top: 20px;">
+        <select class="form-select"
+                name="skill"
+                onchange="this.form.submit()">
+            <option value="">— Skills —</option>
+            {% for tech in tool_icons %}
+                <option value="{{ tech }}"
+                {% if tech.lower() == current_skill %}selected{% endif%}>
+                {{ tech }}</option>
+            {% endfor %}
+        </select>
+</form>
+
+<div class="all-portfolio-container">
+    <h1 class="all-title">Portafolio</h1>
+       <div class="grid">
+           {% for p in portafolios %}
+                <div class="card">
+                    <img src="{{ url_for('static', filename=p.avatar if p.avatar else 'placeholder.png') }}" alt="avatar">
+                    <a href="{{ url_for('view_portafolio', uuid=p.uuid) }}" target="_blank">{{ p.name }}</a>
+                    <p class="bio-preview">{{ p.bio }}</p>
+
+                        <div class="tool-list">
+                            {% for tech, icon in tool_icons.items() %}
+
+                                {% if tech in p.skills %}
+                                    <span class="badge">
+                                    <i class="{{ icon }}"></i> {{ tech }}
+                                    </span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                </div>
+            {% endfor %}
+       </div>
+</div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="{{ url_for('form') }}" class="button-secondary">Crear un nuevo portafolio</a>
+    </div>
+</body>
+</html>
